@@ -15,6 +15,7 @@ const DEFAULT_VALUES = {
 
 
 function App() {
+  const [isUserToUpdate, setIsUserToUpdate] = useState(null)
   const [isShowModal, setIsShowModal] = useState(false)
   const [users, setUsers] = useState([])
 
@@ -50,9 +51,22 @@ function App() {
     .catch((error) => console.log(error))
   }
 
+  const updateUser = (data, reset) => {
+    const url = BASE_URL + `/users/${isUserToUpdate.id}/`
+
+    axios
+    .patch(url, data)
+      .then(() => {
+        getAllUsers()
+        resetUserForm(reset)
+      })
+    .catch((error) => console.log(error))
+  }
+
   const resetUserForm = (reset) => {
     setIsShowModal(false)
     reset(DEFAULT_VALUES)
+    setIsUserToUpdate(null)
   }
 
   useEffect(() => {
@@ -64,12 +78,17 @@ function App() {
     <main className="font-[Lato] min-h-screen border border-b-amber-900">
       <Header changeShowModal ={ changeShowModal }  />
       <UserForm
-        isShowModal = {isShowModal}
+        isShowModal={isShowModal}
         changeShowModal={changeShowModal}
-        createUser = { createUser }
+        createUser={createUser}
+        isUserToUpdate={isUserToUpdate}
+        updateUser={updateUser}
+        resetUserForm={resetUserForm}
       />
 
-      <UserList users={users} deleteUser={ deleteUser } />
+      <UserList users={users}
+        deleteUser={deleteUser}
+        changeShowModal={changeShowModal} setIsUserToUpdate={setIsUserToUpdate} />
       
     </main>
   )

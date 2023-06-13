@@ -1,7 +1,12 @@
-const User = ({ user, deleteUser }) => {
+const User = ({ user, deleteUser, changeShowModal, setIsUserToUpdate }) => {
 
     const handleClickDeleteUser = () => {
         deleteUser(user.id)
+    }
+
+    const handleClickUpdateUser = () => {
+        changeShowModal()
+        setIsUserToUpdate(user)
     }
 
     return (
@@ -11,7 +16,7 @@ const User = ({ user, deleteUser }) => {
 
             {/* Email */}
             <div className="mx-5 my-3">
-                <h5 className="text-gray-400">Correo</h5>
+                <h5 className="text-gray-400">Email</h5>
                 <span>{user.email}</span>
             </div>
 
@@ -22,9 +27,9 @@ const User = ({ user, deleteUser }) => {
             </div>
 
             <div className="flex justify-end gap-2 pr-3 pb-2">
-                <button type="button" className="border h-10 w-10 rounded-md bg-secondary text-white text-xl" onClick={handleClickDeleteUser}><i className='bx bxs-trash'></i></button>
+                <button onClick={handleClickDeleteUser} type="button" className="border h-10 w-10 rounded-md bg-secondary text-white text-xl"><i className='bx bxs-trash'></i></button>
 
-                <button type="button" className="border h-10 w-10 rounded-md bg-gray-400/70 text-white text-xl" ><i className='bx bx-edit'></i></button>
+                <button onClick={handleClickUpdateUser} type="button" className="border h-10 w-10 rounded-md bg-gray-400/70 text-white text-xl" ><i className='bx bx-edit'></i></button>
             </div>
 
         </article>
