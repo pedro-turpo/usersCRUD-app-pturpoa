@@ -10,7 +10,13 @@ const User = ({ user, deleteUser, changeShowModal, setIsUserToUpdate }) => {
     }
 
     return (
-        <article className="bg-gray-300/40 rounded-lg min-w-[260px] mx-auto py-2">
+        <article className="bg-gray-300/40 rounded-lg w-[260px] mx-auto py-2 sm:w-[350px] sm:px-10">
+
+            {/* Photo Random */}
+            <div className="h-[110px] flex justify-center items-center pt-2">
+                <div className="h-[100px] w-[100px] rounded-full bg-[url('/defaultImage.png')] bg-no-repeat bg-cover"></div>
+            </div>
+
             {/* Name */}
             <h4 className="text-center font-bold text-[18px] mx-2 p-2 border-b-2">{user.first_name} {user.last_name}</h4>
 

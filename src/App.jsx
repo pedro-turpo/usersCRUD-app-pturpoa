@@ -89,7 +89,6 @@ function App() {
       <UserList users={users}
         deleteUser={deleteUser}
         changeShowModal={changeShowModal} setIsUserToUpdate={setIsUserToUpdate} />
-      
     </main>
   )
 }
